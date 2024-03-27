@@ -30,7 +30,7 @@ Primero, importa el plugin y aplícalo a tu esquema de Mongoose.
 
 ```bash
 const mongoose = require('mongoose');
-const paginatePlugin = require('paginex-mongoose');
+const { paginatePlugin } = require('paginex-mongoose');
 const { Schema } = mongoose;
 
 const mySchema = new Schema({
