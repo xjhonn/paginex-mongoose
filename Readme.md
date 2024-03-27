@@ -92,6 +92,7 @@ No olvidar el:
 
 ```bash
 
+import { paginatePlugin } from 'paginex-mongoose/paginate';
 TuSchema.plugin(paginatePlugin)
 
 ```
