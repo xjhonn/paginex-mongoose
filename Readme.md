@@ -1,4 +1,4 @@
-# mongoose-paginate-plugin
+# paginex-mongoose
 
 Un plugin de paginación flexible y fácil de usar para Mongoose, diseñado para simplificar la paginación de consultas en aplicaciones que utilizan Mongoose con MongoDB.
 
@@ -22,7 +22,7 @@ Primero, importa el plugin y aplícalo a tu esquema de Mongoose.
 
 ```bash
 const mongoose = require('mongoose');
-const paginatePlugin = require('mongoose-paginate-plugin');
+const paginatePlugin = require('paginex-mongoose');
 const { Schema } = mongoose;
 
 const mySchema = new Schema({
