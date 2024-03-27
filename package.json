@@ -2,6 +2,9 @@
  "name": "paginex-mongoose",
  "version": "1.0.0",
  "description": "Un plugin de paginación con agregación simple y reutilizable para Mongoose.",
+ "peerDependencies": {
+  "mongoose": ">=5.0.0 <7.0.0"
+},
  "main": "paginate.js",
  "types": "paginate.types.ts",
  "scripts": {
@@ -22,7 +25,7 @@
  "author": "Jonatan dos Santos da Silva <xjhonn@gmail.com>",
  "license": "ISC",
  "bugs": {
-   "url": "https://github.com/tuusuario/turepositorio/issues"
+   "url": "https://github.com/xjhonn/paginex-mongoose/issues"
  },
- "homepage": "https://github.com/tuusuario/turepositorio#readme"
+ "homepage": "https://github.com/xjhonn/paginex-mongoose#readme"
 }

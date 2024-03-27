@@ -9,6 +9,14 @@ Un plugin de paginación flexible y fácil de usar para Mongoose, diseñado para
 - Conversión automática de IDs de string a ObjectId para consultas.
 - Proporciona información detallada de la paginación como el total de documentos, páginas, y más.
 
+## Requisitos
+
+Este paquete requiere Mongoose versión 5.x.x o superior. Asegúrate de tener Mongoose instalado en tu proyecto:
+
+```bash
+npm install mongoose
+```
+
 ## Instalación
 
 Para instalar el paquete, ejecuta el siguiente comando en tu terminal:
@@ -33,6 +41,56 @@ const mySchema = new Schema({
 mySchema.plugin(paginatePlugin);
 
 const MyModel = mongoose.model('MyModel', mySchema);
+```
+
+## Types para NestJS
+
+```bash
+
+import { Field, ID, Int, ObjectType } from "@nestjs/graphql";
+import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import GraphQLJSON from "graphql-type-json";
+import * as mongoose from 'mongoose';
+
+export interface TuSchemaModel extends mongoose.Model<TuSchema> {
+  paginateCollection(opts: PaginateOptions): Promise<PaginateResult<TuSchema>>;
+}
+
+
+------
+
+
+
+@Schema({
+  toJSON: { virtuals: true, getters: true },
+  toObject: { virtuals: true, getters: true },
+})
+@ObjectType({ description: 'Tu Schema Description' })
+export class TuSchema {
+  @Field(type => [GraphQLJSON], { nullable: true })
+  docs: JSON;
+
+  @Field(type => Boolean)
+  hasNextPage: boolean;
+
+  @Field(type => Boolean)
+  hasPreviousPage: boolean;
+
+  @Field(type => Int)
+  page: number;
+
+  @Field(type => Int)
+  pageSize: number;
+
+  @Field(type => Int)
+  totalDocs: Number;
+
+  @Field(type => Int)
+  totalPages: number;
+
+}
+
+export const TuSchemaFactory = SchemaFactory.createForClass(TuSchema);
 ```
 
 ## Paginando Resultados
