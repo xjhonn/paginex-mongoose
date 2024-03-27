@@ -56,11 +56,6 @@ export interface TuSchemaModel extends mongoose.Model<TuSchema> {
   paginateCollection(opts: PaginateOptions): Promise<PaginateResult<TuSchema>>;
 }
 
-
-------
-
-
-
 @Schema({
   toJSON: { virtuals: true, getters: true },
   toObject: { virtuals: true, getters: true },
@@ -91,6 +86,14 @@ export class TuSchema {
 }
 
 export const TuSchemaFactory = SchemaFactory.createForClass(TuSchema);
+```
+
+No olvidar el:
+
+```bash
+
+TuSchema.plugin(paginatePlugin)
+
 ```
 
 ## Paginando Resultados
