@@ -12,14 +12,26 @@ module.exports.paginatePlugin = function paginatePlugin(schema) {
 
     // Función para convertir automáticamente las strings a ObjectId
     const convertValuesRecursively = (obj) => {
+      // Función para determinar si una cadena es una fecha válida
+      const isValidDate = (dateString) => {
+        const date = new Date(dateString);
+        return !isNaN(date);
+      };
+    
       if (Array.isArray(obj)) {
         return obj.map(convertValuesRecursively);
       } else if (obj !== null && typeof obj === 'object') {
         const newObj = {};
         Object.keys(obj).forEach((key) => {
           const value = obj[key];
-          if (typeof value === 'string' && Types.ObjectId.isValid(value)) {
-            newObj[key] = Types.ObjectId(value);
+          if (typeof value === 'string') {
+            if (Types.ObjectId.isValid(value)) {
+              newObj[key] = Types.ObjectId(value);
+            } else if (isValidDate(value)) {
+              newObj[key] = new Date(value);
+            } else {
+              newObj[key] = value;
+            }
           } else if (typeof value === 'object') {
             newObj[key] = convertValuesRecursively(value);
           } else {
@@ -30,6 +42,7 @@ module.exports.paginatePlugin = function paginatePlugin(schema) {
       }
       return obj;
     };
+    
 
     query = convertValuesRecursively(query);
 
