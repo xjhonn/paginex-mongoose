@@ -26,7 +26,7 @@ module.exports.paginatePlugin = function paginatePlugin(schema) {
           const value = obj[key];
           if (typeof value === 'string') {
             if (Types.ObjectId.isValid(value)) {
-              newObj[key] = Types.ObjectId(value);
+              newObj[key] = new Types.ObjectId(value);
             } else if (isValidDate(value)) {
               newObj[key] = new Date(value);
             } else {

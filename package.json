@@ -1,6 +1,6 @@
 {
  "name": "paginex-mongoose",
- "version": "1.1.0",
+ "version": "1.2.0",
  "description": "Un plugin de paginación con agregación simple y reutilizable para Mongoose.",
  "peerDependencies": {
   "mongoose": ">=5.0.0 <7.0.0"
